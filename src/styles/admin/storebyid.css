@@ -1,0 +1,20 @@
+
+
+
+.btn-secondary{
+    border: none !important;
+    background-color: transparent !important;
+    margin-right: 30%;
+    cursor: pointer;
+    color: #fff;
+    height: 40px !important;
+}
+
+.btn-secondary :hover i{
+    color: #daed10;
+}
+
+a{
+    text-decoration: none !important;
+}
+

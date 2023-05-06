@@ -1,0 +1,35 @@
+.container-with-image {
+    margin-left: -40% !important;
+    padding-top: 10% !important;
+    width: auto !important; 
+}
+
+.container-with-noimage{
+    margin-left: 65% !important;
+    margin-top: -55% !important;
+    
+  } 
+
+  .row{
+    box-shadow: none !important;
+} 
+
+.btn{
+  height: 40px !important;
+}
+
+
+.password-rules {
+  font-size: x-small;
+  list-style: none !important;
+  margin-top: -20px!important;
+  padding-left: 3px !important;
+  color: #020202cd!important;
+}
+
+.nav-pills .nav-link{
+  border-radius: 5.75rem !important;
+}
+
+
+

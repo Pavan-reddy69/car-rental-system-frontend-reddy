@@ -1,0 +1,68 @@
+.common__section {
+  background: linear-gradient(#000d6b, rgb(0, 13, 107, 0.6)),
+  url("../assets/all-images/drive.jpg");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 90px 0px;
+  margin-bottom: 0;
+ }
+ 
+ .filter__elements{
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  padding-left: 10px;
+  top: 0;
+ }
+ 
+ .apply__btn {
+  background: #000d6b !important;
+  color: #fff !important;
+  padding: 10px 20px;
+  border: none;
+  outline: none;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  margin-left: 20%;
+ }
+ 
+ .apply__btn a {
+  display: flex;
+  align-items: center;
+  column-gap: 0.4rem;
+  text-decoration: none;
+  color: #fff;
+  justify-content: end;
+  font-size: 0.9rem;
+ }
+ 
+ .apply__btn a:hover {
+  color: #fff;
+ }
+ 
+ button {
+  background: none;
+  color: #fff;
+  border: none;
+ }
+ 
+ .filter__elements{
+  padding-left: 20px;
+  width: 90%;
+ }
+ 
+ .filter__element{
+  padding-top: 0 !important;
+  border-radius: 10px;
+  margin-bottom: 7px;
+ }
+ 
+ 
+ 
+ .confirm__btn{
+  border-radius: 10px;
+ }
+ 
+ .invoice{
+  text-align: center;
+ }

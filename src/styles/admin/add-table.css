@@ -1,0 +1,22 @@
+.add-button{
+    /* float: right; */
+    display:flex;
+    justify-content: flex-end;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding: auto;
+}
+.table-comp{
+    width: 90%;
+    margin: auto;
+}
+
+.back-btn{
+    display:flex;
+    justify-content: flex-end;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding: auto;
+    background-color: #0b5ed7;
+}
+
