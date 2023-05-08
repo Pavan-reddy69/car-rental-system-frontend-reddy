@@ -25,6 +25,19 @@ const CarListing = () => {
   console.log(query)
   const [carData,setCarData]= useState([])
 
+  // const postFunction=(e,est,v_id)=>{
+  //   e.preventDefault();
+  //   alert("Order Confirmed");
+  //   axios
+  //   .post(api+"/order",{
+  //   user:"", 
+  //   fromTime:TimeData.fromTime,
+  //   toTime:TimeData.toTime,
+  //   estPrice:est,
+  //   vehicle_id:v_id
+  //   }).then(res=>console.log('Posting Data',res)).catch(error => console.log(error))
+  //   }
+
   const [filters,setFilters]=useState([
     {
       brand:"",
@@ -72,18 +85,19 @@ const CarListing = () => {
               <div className="w-95 filter__elements ">
               <div className=" d-flex align-items-center gap-5 flex-wrap">
                 <span className=" d-flex align-items-center gap-2 ">
-                  {/* <i class="ri-sort-asc"></i> */}
+                  {/* <i class="ri-sort-asc"></i>
                   <p>Sort by: </p>
                   <select className="filter__element" name="sort" onChange={changeHandler}>
                   <option value="low">Low to High</option>
                   <option value="high">High to Low</option>
                 </select> 
-                
+                 */}
                 {/* <i class="ri-filter-2-fill"></i> */}
                 <p>&emsp; Filters: </p>
                 <span className="d-flex align-items-center gap-5 filter__element">
-                <Filters filter="Brand" name="brand" options={[]} option1="Tesla" option2="Toyota" option3="BMW" changeHandler={changeHandler}/>
-                <Filters filter="Seats" name="noOfSeats" option1="5" option2="7" option3="8" changeHandler={changeHandler}/>
+                <Filters filter="Brand" name="brand" options={[]} option1="Tesla" option2="Toyota" option3="BMW" option4="Mahindra"
+                        option5="Tata" option6="Maruti" option7="Kia" option8="Hyundai" changeHandler={changeHandler}/>
+                <Filters filter="Seats" name="noOfSeats" option1="5" option2="7" changeHandler={changeHandler}/>
                 </span>
                 
                 </span>
@@ -94,8 +108,8 @@ const CarListing = () => {
             </Col>
             {carData.length>0? 
             carData.map((item) => (
-              <CarItem item={item} key={item.id} />
-            )):<p>No Cars Awailable</p> }
+              <CarItem item={item} key={item.id} TimeData={TimeData}/>
+            )):<p>No Cars Available</p> }
             
           </Row>
         </Container>
@@ -105,7 +119,7 @@ const CarListing = () => {
 };
 
 
-const Filters = ({filter,name, option1, option2, option3,changeHandler})=>{
+const Filters = ({filter,name, option1, option2, option3,option4 ,option5,option6,option7,option8,changeHandler})=>{
   return(
   <div>
     
@@ -114,6 +128,11 @@ const Filters = ({filter,name, option1, option2, option3,changeHandler})=>{
                   <option>{option1}</option>
                   <option >{option2}</option>
                   <option >{option3}</option>
+                  <option>{option4}</option>
+                  <option>{option5}</option>
+                  <option>{option6}</option>
+                  <option>{option7}</option>
+                  <option>{option8}</option>
     </select>
     
   </div>

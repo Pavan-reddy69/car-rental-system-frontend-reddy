@@ -22,9 +22,15 @@
 .pending{
   height: 600px;
 }
+.invoice{
+  margin: auto;
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+
 thead th {
   color: black;
-
 }
   table {
       text-align: center;

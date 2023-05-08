@@ -2,82 +2,109 @@ import React, { useEffect, useState } from 'react'
 import TableComp from '../../components/adminUI/TableComp/TableComp'
 import FormComp from '../../components/adminUI/FormComp/FormComp';
 import axios from 'axios';
+import closeicon from '../../components/staffUI/forms/close.png'
 import api from '../../api/api';
 import CommonSection from '../../components/UI/CommonSection';
 import '../../styles/admin/add-table.css'
-import { TailSpin } from 'react-loader-spinner';
-
+import Helmet from "../../components/Helmet/Helmet";
+import '../../components/staffUI/forms/pickup.css';
 function Stores() {
-    const colList=[
-    
-    {
-        header: 'Name',
-        key: 'name'
-    },
-    {
-        header: 'Location',
-        key: 'location'
-    },{
-        header: 'Store ID',
-        key: 'id'
-    },
+ const colList=[
+ 
+ {
+ header: 'Name',
+ key: 'name'
+ },
+ {
+ header: 'Location',
+ key: 'location'
+ },{
+ header: 'Admin Id',
+ key: 'admin_id'
+ },
 ]
-    const [fullData,setFullData]=useState([]);
-    const [loading, setLoading] = useState(false);
-    const formFields=[
-        {
-            label: 'Store Name',
-            dataType: 'text',
-            name: 'name'
-        },
-        {
-            label: 'Location',
-            dataType: 'text',
-            name: 'location'
-        },
-    ]
+ const [fullData,setFullData]=useState([]);
 
-    useEffect(()=>{
-        const getFullData=()=>{
-            setLoading(true);
-            axios.get(api+'/store')
-            .then(data=>{
-                setFullData(data.data);
-                setLoading(false);
-            })
-            .catch(err=>console.log(err));
-        };
-        
-    getFullData();
-    
-    },[])
+ const [store_name,setStoreName]=useState("")
+ const [location,setLocation]=useState("")
+ const [showForm, setShowForm] = useState(false);
+
+ const postMeth=(storeName,storeLocation)=>{
+ console.log(storeLocation,storeName)
+ axios.post(api+'/store',{admin_id:1,name:storeName,location:storeLocation}).then(res=>{
+  console.log('posting Data',res);
+  setShowForm(false);
+  getFullData();
+ }).catch(err=>console.log(err))
+ }
+
+ const handleToggleVisible = () => {
+ setShowForm(false);
+ getFullData();
+ };
+
+ const getFullData = () => {
+  axios.get(api+'/store')
+    .then(data=>{
+      setFullData(data.data);
+    })
+    .catch(err=>console.log(err));
+ };
+
+ useEffect(()=>{
+ getFullData();
+ },[])
 
 
-  return (
-    <div className="login-wrapper" style={{ position: "relative" }}>
-    {loading && (
-      <div className="loader-wrapper" style={{ position: "fixed", top: 0, left:0 , bottom: 0, right: 0, backgroundColor: "rgba(0, 0, 0, 0.5)" }}>
-        <TailSpin
-          height="180"
-          width="180"
-          color="#fff"
-          ariaLabel="tail-spin-loading"
-          radius="1"
-          wrapperStyle={{ position: "absolute", top: 250, left: 625, bottom: 0, right: 0 }}
-          wrapperClass=""
-          visible={true}
-        />
-      </div>
-    )}
-        <CommonSection title="Stores" />
-        <div className='add-button table-comp'>
-            <FormComp formTitle="Add Stores" FieldList={formFields} tableUrl="/store" />
+ return (
+ <Helmet title="Stores">
+ <div>
+ <CommonSection title="Stores" />
+ <div className='add-button table-comp'>
+ {showForm && (
+    <div className="pickup-form-container">
+      <form className='pickform' onSubmit={(event) => {
+        event.preventDefault();
+        postMeth(store_name, location);
+      }}>
+        <button className='close-button' onClick={() => setShowForm(false)}>
+          <img src={closeicon} width="47" height="42"/>
+        </button>
+        <div>
+          <label className='pickform1' >Store Name
+            <input
+              type="text"
+              id="store_name"
+              onChange={(event) => setStoreName(event.target.value)}
+              required
+            />
+          </label>
         </div>
-        <div className='table-comp'>
-            <TableComp columns={colList} data={fullData} url="/stores/" isClickable={true}/>
+        <div>
+          <label className='pickform1'>Location
+            <input
+              type="text"
+              id="location"
+              onChange={(event) => setLocation(event.target.value)}
+              required
+            />
+          </label>
         </div>
+        <button className='pickform2' type="submit">Submit</button>
+      </form>
     </div>
-  )
+  )}
+  {!showForm && (
+    <button className="add-item-button" onClick={() => setShowForm(true)}>
+      Add New Store
+    </button>
+  )}
+ </div>
+ <div className='table-comp'>
+ <TableComp columns={colList} data={fullData} url="/stores/" isClickable={true} onClose={() => handleToggleVisible()}/>
+ </div>
+ </div></Helmet>
+ )
 }
 
 export default Stores

@@ -114,7 +114,7 @@ const PendingOrders = () => {
     <td>{order.userFirstName}</td>
     <td>{order.vehicleModelName} </td>
     <td>{order.numberPlate}</td>
-    <td>{moment(order.fromDate).format('DD/MM/YYYY')}</td>
+    <td>{moment(order.fromTime).format('DD/MM/YYYY')}</td>
     <td>
       {!showForm[order.id] ? (
         <button onClick={() => handleShowForm(order.id)}>Pickup</button>
